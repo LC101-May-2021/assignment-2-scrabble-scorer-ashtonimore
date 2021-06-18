@@ -19,13 +19,13 @@ function oldScrabbleScorer(word) {
 	for (let i = 0; i < word.length; i++) {
  
 	  for (const pointValue in oldPointStructure) {
- 
 		 if (oldPointStructure[pointValue].includes(word[i])) {
 			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
 		 }
  
 	  }
 	}
+  console.log(`Your scores: \n${letterPoints}`);
 	return letterPoints;
  }
 
@@ -33,16 +33,53 @@ function oldScrabbleScorer(word) {
 // don't change the names or your program won't work as expected. //
 
 function initialPrompt() {
-   console.log("Let's play some scrabble! Enter a word:");
+   let userInput = input.question("Let's play some scrabble! Enter a word: ")
+   return userInput;
 };
 
-let simpleScore;
+let simpleScore = function(word){
+  let numericalScore = word.length;
+  console.log(`Your score: ${numericalScore}`);
+  return numericalScore;
+};
 
-let vowelBonusScore;
+let vowelBonusScore = function(word){
+  word = word.toUpperCase();
+  const vowelScoring = {
+    3: ["A", "E", "I", "O", "U"],
+    1: ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
+  };
+  let letterPoints = "";
+	for (let i = 0; i < word.length; i++) {
+ 
+	  for (const pointValue in vowelScoring) {
+		 if (vowelScoring[pointValue].includes(word[i])) {
+			letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+		 };
+ 
+	  };
+	};
+  console.log(`Your scores: \n${letterPoints}`);
+	return letterPoints;
+};
 
 let scrabbleScore;
-
-const scoringAlgorithms = [];
+let simpleScoreObject = {
+  Name: "Simple Score",
+  Description: "Each letter is worth 1 point.",
+  Score Function: "A function with a parameter for user input that returns a score."
+};
+let vowelBonusScoreObject = {
+  Name: "Bonus Vowels",
+  Description: "Vowels are 3 pts, consonants are 1 pt.",
+  Score Function: "A function that returns a score based on the number of vowels and consonants."
+};
+let oldScrabbleScorerObject = {
+  Name: "Scrabble",
+  Description: "The traditional scoring algorithm.",
+  Score Function: "Uses the oldScrabbleScorer() function to determine the score for a given word."
+};
+const scoringAlgorithms = [oldScrabbleScorerObject, simpleScoreObject, vowelBonusScoreObject];
 
 function scorerPrompt() {}
 
@@ -51,8 +88,9 @@ function transform() {};
 let newPointStructure;
 
 function runProgram() {
-   initialPrompt();
-   
+  //oldScrabbleScorer(initialPrompt());
+ // simpleScore(initialPrompt());
+ vowelBonusScore(initialPrompt());
 }
 
 // Don't write any code below this line //
