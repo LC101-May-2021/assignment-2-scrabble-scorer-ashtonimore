@@ -92,7 +92,7 @@ let vowelBonusScoreObject = {
 let oldScrabbleScorerObject = {
   name: "Scrabble",
   description: "The traditional scoring algorithm.",
-  scoringFunction: oldScrabbleScorer
+  scoringFunction: scrabbleScore
 };
 let scoringAlgorithms = [simpleScoreObject, vowelBonusScoreObject, oldScrabbleScorerObject];
 
