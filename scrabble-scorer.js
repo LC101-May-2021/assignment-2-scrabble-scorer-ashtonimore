@@ -94,7 +94,7 @@ let oldScrabbleScorerObject = {
   description: "The traditional scoring algorithm.",
   scoreFunction: oldScrabbleScorer
 };
-const scoringAlgorithms = [simpleScoreObject, vowelBonusScoreObject, oldScrabbleScorerObject];
+let scoringAlgorithms = [simpleScoreObject, vowelBonusScoreObject, oldScrabbleScorerObject];
 
 function scorerPrompt() {
   word = initialPrompt()
