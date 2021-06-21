@@ -71,7 +71,7 @@ let scrabbleScore = function(word) {
 
     for (pointValue in oldPointStructure) {
       if (oldPointStructure[pointValue].includes(word[i])) {
-        letterPoints += pointValue;
+        letterPoints += Number(pointValue);
       }
 
     }
