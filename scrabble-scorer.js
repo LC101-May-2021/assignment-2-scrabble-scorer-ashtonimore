@@ -14,18 +14,18 @@ const oldPointStructure = {
 
 function oldScrabbleScorer(word) {
   word = word.toUpperCase();
-  let letterPoints = "";
+  let letterPoints = 0;
 
   for (let i = 0; i < word.length; i++) {
 
     for (const pointValue in oldPointStructure) {
       if (oldPointStructure[pointValue].includes(word[i])) {
-        letterPoints += `Points for '${word[i]}': ${pointValue}\n`
+        letterPoints += pointValue;
       }
 
     }
   }
-  console.log(`Your score for '${word}': ${letterPoints}`);
+
   return letterPoints;
 }
 
@@ -49,7 +49,7 @@ let vowelBonusScore = function(word) {
     3: ["A", "E", "I", "O", "U"],
     1: ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "W", "X", "Y", "Z"]
   };
-  let letterPoints = "";
+  let letterPoints = 0;
   for (let i = 0; i < word.length; i++) {
 
     for (const pointValue in vowelScoring) {
@@ -98,37 +98,32 @@ function scorerPrompt() {
   };
 
 };
-console.log(oldPointStructure['1'][1])
-function transform(object) {
-  let newPointStructure = {};
-  /*let onePoint = object['1'];
-  let twoPoint = object['2'];
-  let threePoint = object['3'];
-  let fourPoint = object['4'];
-  let fivePoint = object['5'];
-  let eightPoint = object['8'];
-  let tenPoint = object['10'];*/
-  for (let i = 0; i < 7; i++) {
 
-    for (const pointValue in object) {
-      
-         newPointStructure[i] = object[i][i]
+function transform(oldObject) {
+  let newPointStructure = {};
+  
+    for (pointValue in oldObject) {
+      console.log(oldObject[pointValue])
+      let letters = oldObject[pointValue];
+      for (let i = 0; i < letters.length; i++){
+      let letter = letters[i].toUpperCase();
+      newPointStructure[letter] = Number(pointValue);
 
     }
   }
-  console.log(newPointStructure)
-  return newPointStructure
+  return newPointStructure;
    
   
-}
-transform(oldPointStructure)
-let newPointStructure = {
+};
+let newPointStructure = transform(oldScrabbleScorerObject);
  /* a: 1, b: 3, c: 3, d: 2, e: 1, f: 4, g: 2, h: 4, i: 1, j: 8, k: 5, l: 1, m: 3, n: 1, o: 1, p: 3, q: 10, r: 1, s: 1, t: 1, u: 1, v: 4, w: 4, x: 8, y: 4, z: 10*/
-}
+
 
 
 function runProgram() {
-  scorerPrompt();
+  let scoringFunction = scorerPrompt();
+  
+   console.log(`Your score for '${scoringFunction}': ${scorerPrompt}`);
 }
 
 // Don't write any code below this line //
