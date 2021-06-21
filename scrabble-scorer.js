@@ -63,7 +63,22 @@ let vowelBonusScore = function(word) {
   return letterPoints;
 };
 
-let scrabbleScore;
+let scrabbleScore = function(word) {
+  word = word.toUpperCase();
+  let letterPoints = 0;
+
+  for (let i = 0; i < word.length; i++) {
+
+    for (pointValue in oldPointStructure) {
+      if (oldPointStructure[pointValue].includes(word[i])) {
+        letterPoints += pointValue;
+      }
+
+    }
+  }
+
+  return letterPoints;
+};
 let simpleScoreObject = {
   name: "Simple Score",
   description: "Each letter is worth 1 point.",
@@ -115,7 +130,7 @@ function transform(oldObject) {
    
   
 };
-let newPointStructure = transform(oldScrabbleScorer);
+let newPointStructure = transform(oldPointStructure);
  /* a: 1, b: 3, c: 3, d: 2, e: 1, f: 4, g: 2, h: 4, i: 1, j: 8, k: 5, l: 1, m: 3, n: 1, o: 1, p: 3, q: 10, r: 1, s: 1, t: 1, u: 1, v: 4, w: 4, x: 8, y: 4, z: 10*/
 
 
